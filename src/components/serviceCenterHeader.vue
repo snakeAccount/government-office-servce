@@ -156,7 +156,7 @@ export default {
     }
   }
   .login-info-area {
-    width: 30%;
+    width: 40%;
   }
 }
 </style>

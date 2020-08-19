@@ -1,6 +1,6 @@
 <!--
-  @description：首页页面
-  @createTime：2020-08-16 16:04:29
+  @description：案件信息
+  @createTime：2020-08-20 00:16:43
   @author：luomingkai
   @lastUpdateTime：
   @props：
@@ -8,27 +8,16 @@
   @version：
 -->
 <template>
-  <div class='first-page-container'>
-      <div class="swiper-container">
-        <service-swiper :swiperSlideList="swiperSlideList"></service-swiper>
-      </div>
-      <div class="service-info-container">
-      </div>
-  </div>
+  <div class='caseInfo-container'>案件信息</div>
 </template>
 
 <script>
-import serviceSwiper from '@/components/serviceSwiper'
-import imagePath from '@/static/img/firstPage/swiper/1910171819504111343.png'
-import imagePath1 from "@/static/img/firstPage/swiper/pic.jpg"
 export default {
   // import引入的组件需要注入到对象中才能使用
-  components: {serviceSwiper},
+  components: {},
   props: {},
   data () {
-    return {
-      swiperSlideList: [{image: imagePath},{image: imagePath1},{image: imagePath}],
-    }
+    return {}
   },
   // 监听属性 类似于data概念
   computed: {},
@@ -51,13 +40,4 @@ export default {
 </script>
 <style lang='scss' scoped>
 // @import url(); 引入公共css类
-.first-page-container {
-    .swiper-container {
-        width: 100%;
-        height: 500px;
-    }
-    .service-info-container {
-        // background-image: url('@/static/img/firstPage/background.png');
-    }
-}
 </style>

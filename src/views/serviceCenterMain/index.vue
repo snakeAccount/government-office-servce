@@ -16,8 +16,7 @@
               :key="'nav' + index"
               @click="handleNavigate(item,index)">
               <router-link 
-                :class="activeNavIndex === index ? 'activeClass' : ''"
-                :to="{ 'path': item.path }"
+                :to="{ 'path': item.path}"
                 tag="div"
                 >{{item.name}}</router-link>
               </li>
@@ -44,24 +43,32 @@ export default {
       */
       navDataList: [
         {name: '首页', path: '/firstPage'},
-        {name: '个人服务', path: ''},
-        {name: '法律法规', path: ''},
-        {name: '案件信息', path: ''},
-        {name: '信息登录', path: ''},
-        {name: '统计报表', path: ''},
-        {name: '地图', path: ''},
-        {name: '统计分析', path: ''},
+        {name: '个人服务', path: '/individualService'},
+        {name: '法律法规', path: '/enactment'},
+        {name: '案件信息', path: '/caseInfo'},
+        {name: '信息登录', path: '/informationLogin'},
+        {name: '统计报表', path: '/statisticsForm'},
+        {name: '地图', path: '/mapInfo'},
+        {name: '统计分析', path: '/statisticsAnalysis'},
       ],
-      activeNavIndex: 0,
     }
   },
   // 监听属性 类似于data概念
   computed: {},
   // 监控data中的数据变化
-  watch: {},
+  watch: {
+    $route: {
+      immediate: true,
+      handler(to) {
+        this.$store.dispatch('eidtCurrentPath', to)
+      }
+    }
+  },
   // 生命周期 - 创建完成（可以访问当前this实例）
   created () {
-    this.$router.push({ 'path': '/firstPage'})
+    if (Object.is(this.$route.path, '/')) {
+      this.$router.path('/firstPage');
+    }
   },
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {},
@@ -75,7 +82,7 @@ export default {
      * @crateTime 2020-08-16 13:56:02
      */
     handleNavigate (item, index) {
-      this.activeNavIndex = index
+      console.log(item, index)
     }
   },
   beforeCreate () {}, // 生命周期 - 创建之前
@@ -90,6 +97,7 @@ export default {
 <style lang='scss' scoped>
 // @import url(); 引入公共css类
 .service-center-main-container {
+  min-width: 1200px;
   .nav-list {
     height: 50px;
     background: -moz-linear-gradient(right, #1a3784 0%, #34bab2 100%);
@@ -116,7 +124,7 @@ export default {
           font-size: 17px;
           cursor: pointer;
         }
-        .activeClass {
+        .router-link-active {
           border-bottom: 3px solid orangered;
         }
       }
