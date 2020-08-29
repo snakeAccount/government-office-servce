@@ -67,7 +67,7 @@ export default {
   // 生命周期 - 创建完成（可以访问当前this实例）
   created () {
     if (Object.is(this.$route.path, '/')) {
-      this.$router.path('/firstPage');
+      this.$router.push('/firstPage');
     }
   },
   // 生命周期 - 挂载完成（可以访问DOM元素）
@@ -82,7 +82,9 @@ export default {
      * @crateTime 2020-08-16 13:56:02
      */
     handleNavigate (item, index) {
-      console.log(item, index)
+      // console.log('点击事件')
+      console.log(item)
+      console.log(index)
     }
   },
   beforeCreate () {}, // 生命周期 - 创建之前
